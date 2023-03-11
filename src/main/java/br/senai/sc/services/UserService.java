@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 import java.util.logging.Logger;
 
 @Service
@@ -15,6 +16,14 @@ public class UserService {
     private static final Logger LOG = Logger.getLogger(UserService.class.getName());
 
     private final UserRepository userRepository;
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 
     public User save(User user) {
         try {
@@ -25,7 +34,4 @@ public class UserService {
         }
     }
 
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
 }

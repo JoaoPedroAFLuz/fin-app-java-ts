@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -26,8 +27,8 @@ public class UserController {
     private final UserConverter converter;
 
     @GetMapping()
-    public User findByEmail(@RequestParam String email) {
-        return userService.findByEmail(email);
+    public List<User> findAll() {
+        return userService.findAll();
     }
 
     @PostMapping()
