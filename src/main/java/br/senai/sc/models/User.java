@@ -31,7 +31,6 @@ public class User {
     private String email;
 
     @NotEmpty(message = "Campo obrigatório.")
-    @Column(unique = true)
     private String address;
 
     @NotEmpty(message = "Campo obrigatório.")

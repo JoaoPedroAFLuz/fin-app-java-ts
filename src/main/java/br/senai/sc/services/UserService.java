@@ -2,6 +2,7 @@ package br.senai.sc.services;
 
 import br.senai.sc.models.User;
 import br.senai.sc.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,23 +10,18 @@ import javax.annotation.PostConstruct;
 import java.util.logging.Logger;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
     private static final Logger LOG = Logger.getLogger(UserService.class.getName());
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @PostConstruct
-    public void save() {
+    public User save(User user) {
         try {
-            User user = new User();
-            user.setName("Usuário");
-            user.setEmail("usuario@sc.senai.br");
-            user.setAddress("Rod. Admar Gonzaga, 2765");
-            user.setCpf("12323223200");
-            userRepository.save(user);
+            return userRepository.save(user);
         } catch (Exception e) {
             LOG.severe(e.getMessage());
+            return null;
         }
     }
 

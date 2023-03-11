@@ -1,29 +1,42 @@
 package br.senai.sc.controllers;
 
+import br.senai.sc.converters.UserConverter;
+import br.senai.sc.dtos.NewUserDTO;
+import br.senai.sc.dtos.UserDTO;
 import br.senai.sc.models.User;
 import br.senai.sc.services.UserService;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
-@Controller
-@Scope(value = "request")
+@RestController
+@RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
-    private static final String PAGE_USER = "/public/user.jsf";
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final UserConverter converter;
 
-    @Getter
-    @Setter
-    @Autowired
-    private User user;
-
-    public String findByEmail(String email) {
-        user = userService.findByEmail(email);
-        return PAGE_USER;
+    @GetMapping()
+    public User findByEmail(@RequestParam String email) {
+        return userService.findByEmail(email);
     }
+
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDTO register(@RequestBody @Valid NewUserDTO newUserData) {
+        final User user = converter.dtoToEntity(newUserData);
+        final User persistedUser = userService.save(user);
+
+        return converter.entityToDTO(persistedUser);
+    }
+
 }
