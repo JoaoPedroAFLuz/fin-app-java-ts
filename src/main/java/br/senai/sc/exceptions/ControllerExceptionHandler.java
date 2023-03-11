@@ -14,6 +14,16 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class ControllerExceptionHandler {
 
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ErrorResponseDTO UserNotFound(EntityNotFoundException e, HttpServletRequest request) {
+        return ErrorResponseDTO.builder()
+                .status(HttpStatus.NOT_FOUND.value())
+                .error("Usuário não encontrado")
+                .message(e.getMessage())
+                .path(request.getRequestURI())
+                .build();
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public ErrorResponseDTO handleMethodArgumentoNotValid(MethodArgumentNotValidException e, HttpServletRequest request) {

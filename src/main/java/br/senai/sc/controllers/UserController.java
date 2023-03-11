@@ -31,6 +31,11 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping("by-email")
+    public UserDTO findByEmail(@RequestParam("email") String email) {
+        return converter.entityToDTO(userService.findByEmail(email));
+    }
+
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO register(@RequestBody @Valid NewUserDTO newUserData) {

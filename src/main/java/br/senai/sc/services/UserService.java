@@ -1,12 +1,11 @@
 package br.senai.sc.services;
 
+import br.senai.sc.exceptions.EntityNotFoundException;
 import br.senai.sc.models.User;
 import br.senai.sc.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -22,7 +21,7 @@ public class UserService {
     }
 
     public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado com o e-mail: " + email));
     }
 
     public User save(User user) {
