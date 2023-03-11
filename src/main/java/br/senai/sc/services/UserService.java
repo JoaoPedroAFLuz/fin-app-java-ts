@@ -21,6 +21,8 @@ public class UserService {
             User user = new User();
             user.setName("Usuário");
             user.setEmail("usuario@sc.senai.br");
+            user.setAddress("Rod. Admar Gonzaga, 2765");
+            user.setCpf("12323223200");
             userRepository.save(user);
         } catch (Exception e) {
             LOG.severe(e.getMessage());

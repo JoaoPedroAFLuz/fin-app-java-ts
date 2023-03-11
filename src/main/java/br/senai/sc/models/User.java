@@ -29,4 +29,12 @@ public class User {
     @Email(message = "E-mail inválido!")
     @Column(unique = true)
     private String email;
+
+    @NotEmpty(message = "Campo obrigatório.")
+    @Column(unique = true)
+    private String address;
+
+    @NotEmpty(message = "Campo obrigatório.")
+    @Column(unique = true)
+    private String cpf;
 }
