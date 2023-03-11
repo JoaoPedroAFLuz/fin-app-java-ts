@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -27,13 +28,17 @@ public class UserController {
     private final UserConverter converter;
 
     @GetMapping()
-    public List<User> findAll() {
-        return userService.findAll();
+    public List<UserDTO> findAll() {
+        List<User> users = userService.findAll();
+
+        return users.stream().map(converter::entityToDTO).collect(Collectors.toList());
     }
 
     @GetMapping("by-email")
     public UserDTO findByEmail(@RequestParam("email") String email) {
-        return converter.entityToDTO(userService.findByEmail(email));
+        User user = userService.findByEmail(email);
+
+        return converter.entityToDTO(user);
     }
 
     @PostMapping()
