@@ -1,7 +1,7 @@
 import { Container } from './styles';
 
 interface FormGroupProps {
-  error: string;
+  error?: string;
   children: React.ReactNode;
 }
 
