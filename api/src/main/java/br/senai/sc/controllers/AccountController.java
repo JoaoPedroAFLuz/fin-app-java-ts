@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/accounts")
@@ -19,6 +20,13 @@ public class AccountController {
 
     private final AccountService accountService;
     private final AccountConverter converter;
+
+    @GetMapping
+    public List<AccountDTO> findAll() {
+        List<Account> accounts = accountService.findAll();
+
+        return accounts.stream().map(converter::entityToDTO).collect(Collectors.toList());
+    }
 
     @GetMapping("/by-user")
     public List<AccountDTO> findByUserID(@RequestParam("userId") Long userId) {
