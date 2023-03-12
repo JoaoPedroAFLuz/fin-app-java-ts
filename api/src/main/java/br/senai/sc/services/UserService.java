@@ -31,12 +31,11 @@ public class UserService {
     }
 
     public User save(User user) {
-        try {
-            return userRepository.save(user);
-        } catch (Exception e) {
-            LOG.severe(e.getMessage());
-            return null;
-        }
+        return userRepository.save(user);
+    }
+
+    public void delete(Long id){
+        userRepository.deleteById(id);
     }
 
 }
