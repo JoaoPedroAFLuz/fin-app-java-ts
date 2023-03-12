@@ -4,6 +4,8 @@ import { NewUserDTO } from '../../dtos/NewUser.dtos';
 import { useErrors } from '../../hooks/useErrors';
 import { isEmailValid } from '../../utils/isEmailValid';
 
+import { api } from '../../utils/api';
+
 import { Button } from '../Button';
 import { FormGroup } from '../FormGroup';
 import { Input, InputMask } from '../Input';
@@ -76,6 +78,8 @@ export function UserForm() {
       email,
       address,
     };
+
+    await api.post('/users', user);
 
     console.log(user);
   }
