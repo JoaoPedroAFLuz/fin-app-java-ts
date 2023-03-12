@@ -1,5 +1,6 @@
 package br.senai.sc.services;
 
+import br.senai.sc.dtos.AccountDTO;
 import br.senai.sc.exceptions.EntityNotFoundException;
 import br.senai.sc.models.Account;
 import br.senai.sc.repositories.AccountRepository;
@@ -17,9 +18,8 @@ public class AccountService {
 
     private final AccountRepository accountRepository;
 
-    public List<Account> findByUserId(Long userId) {
-        return accountRepository.findByUserId(userId)
-                .orElseThrow(() -> new EntityNotFoundException("Não encontrada nenhuma conta pertencente ao usuário do id: " + userId));
+    public List<AccountDTO> findByUserId(Long userId) {
+        return accountRepository.findByUserId(userId);
     }
 
     public Account save(Account account) {
