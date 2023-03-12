@@ -32,11 +32,10 @@ public class AccountService {
     }
 
     public Account save(Account account) {
-        try {
-            return accountRepository.save(account);
-        } catch (Exception e) {
-            LOG.severe(e.getMessage());
-            return null;
-        }
+        return accountRepository.save(account);
+    }
+
+    public void delete(Long id) {
+        accountRepository.deleteById(id);
     }
 }

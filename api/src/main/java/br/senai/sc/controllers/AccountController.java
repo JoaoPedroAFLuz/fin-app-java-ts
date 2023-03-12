@@ -42,5 +42,11 @@ public class AccountController {
         return converter.entityToDTO(accountPersisted);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id){
+        accountService.delete(id);
+    }
+
 }
 
