@@ -17,7 +17,7 @@ public class TransactionService {
         return transactionRepository.findByAccountId(accountId);
     }
 
-    public Transaction save(Transaction transaction){
+    public Transaction save(Transaction transaction) {
         return transactionRepository.save(transaction);
     }
 

@@ -5,13 +5,8 @@ import br.senai.sc.dtos.NewUserDTO;
 import br.senai.sc.dtos.UserDTO;
 import br.senai.sc.models.User;
 import br.senai.sc.services.UserService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -53,7 +48,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id){
-        userService.delete(id);
+        userService.deleteById(id);
     }
 
 }
