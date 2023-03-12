@@ -77,18 +77,22 @@ export function UserForm({ onRegisterUser }: UserFormProps) {
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
-    const user: NewUserDTO = {
-      name,
-      cpf,
-      email,
-      address,
-    };
+      const user: NewUserDTO = {
+        name,
+        cpf,
+        email,
+        address,
+      };
 
-    const response = await api.post('/users', user);
+      const response = await api.post('/users', user);
 
-    onRegisterUser(response.data as UserDTO);
+      onRegisterUser(response.data as UserDTO);
+    } catch {
+      console.log('Erro ao cadastrar usuário');
+    }
   }
 
   return (

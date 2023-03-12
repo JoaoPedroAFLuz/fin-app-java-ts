@@ -1,14 +1,15 @@
 import { Link, Outlet } from 'react-router-dom';
-import { Container } from './styles';
 
-import fiescLogoNegative from '../../assets/images/fiesc-logo-negative.png';
+import { Container, OutletContainer } from './styles';
+
+import fiescNegativeLogo from '../../assets/images/fiesc-negative-logo.png';
 
 export function Header() {
   return (
     <>
       <Container>
         <a href="https://fiesc.com.br/" target="_blank" rel="noreferrer">
-          <img src={fiescLogoNegative} alt="FIESC logo" />
+          <img src={fiescNegativeLogo} alt="FIESC logo" />
         </a>
 
         <ul>
@@ -16,15 +17,17 @@ export function Header() {
             <Link to="/user">Pessoa</Link>
           </li>
           <li>
-            <a href="/account">Conta</a>
+            <Link to="/account">Conta</Link>
           </li>
           <li>
-            <a href="/transaction">Movimentação</a>
+            <Link to="/transaction">Movimentação</Link>
           </li>
         </ul>
       </Container>
 
-      <Outlet />
+      <OutletContainer>
+        <Outlet />
+      </OutletContainer>
     </>
   );
 }

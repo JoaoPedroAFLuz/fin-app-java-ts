@@ -32,3 +32,13 @@ export const Container = styled.nav`
     }
   }
 `;
+
+export const OutletContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  max-width: 1000px;
+  margin: 2.5rem auto;
+`;

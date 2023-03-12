@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { UserForm } from '../../components/UserForm';
+import { UserForm } from '../../components/Forms/UserForm';
 import { UserTable } from '../../components/UserTable';
 import { UserDTO } from '../../dtos/User.dto';
 import { api } from '../../utils/api';
