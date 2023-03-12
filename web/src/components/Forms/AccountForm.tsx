@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AccountDTO } from '../../dtos/Account.dto';
 import { NewAccountDTO } from '../../dtos/NewAccount.dto';
 
 import { UserDTO } from '../../dtos/User.dto';
@@ -15,9 +16,10 @@ import { ButtonContainer, Form } from './styles';
 
 interface AccountFormProps {
   users: UserDTO[];
+  onRegisterAccount: (account: AccountDTO) => void;
 }
 
-export function AccountForm({ users }: AccountFormProps) {
+export function AccountForm({ users, onRegisterAccount }: AccountFormProps) {
   const [userId, setUserId] = useState('');
   const [registrationCode, setRegistrationCode] = useState('');
 
@@ -54,7 +56,9 @@ export function AccountForm({ users }: AccountFormProps) {
         registrationCode: Number(registrationCode),
       };
 
-      await api.post('/accounts', account);
+      const { data: accountResponse } = await api.post('/accounts', account);
+
+      onRegisterAccount(accountResponse);
     } catch {
       console.log('Erro ao cadastrar contar');
     }

@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
-import { AccountForm } from '../../components/Forms/AccountForm';
+
+import { applyCPFMask } from '../../utils/applyCPFMask';
+import { api } from '../../utils/api';
+
 import { AccountDTO } from '../../dtos/Account.dto';
 import { UserDTO } from '../../dtos/User.dto';
-import { api } from '../../utils/api';
-import { applyCPFMask } from '../../utils/applyCPFMask';
+
+import { AccountForm } from '../../components/Forms/AccountForm';
+
 import { Container } from './styles';
+import { AccountTable } from '../../components/Tables/AccountTable';
 
 export function Account() {
   const [users, setUsers] = useState<UserDTO[]>([]);
@@ -26,11 +31,23 @@ export function Account() {
     loadData();
   }, []);
 
+  function handleRegisterAccount(account: AccountDTO) {
+    setAccounts((prevState) => [...prevState, account]);
+  }
+
+  function handleRemoveAccount(accountId: number) {
+    setAccounts((prevState) =>
+      prevState.filter((account) => account.id !== accountId)
+    );
+  }
+
   return (
     <Container>
       <h1>Cadastro de Conta</h1>
 
-      <AccountForm users={users} />
+      <AccountForm users={users} onRegisterAccount={handleRegisterAccount} />
+
+      <AccountTable accounts={accounts} onRemoveAccount={handleRemoveAccount} />
     </Container>
   );
 }
