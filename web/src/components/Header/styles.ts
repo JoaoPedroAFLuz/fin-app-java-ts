@@ -8,10 +8,10 @@ export const Container = styled.nav`
 
   padding: 0.5rem;
 
-  background: ${({ theme }) => theme.colors.primary};
+  background: ${({ theme }) => theme.colors.primary.dark};
 
   img {
-    height: 50px;
+    height: 3.25rem;
   }
 
   ul {

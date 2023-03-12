@@ -1,7 +1,12 @@
+import { UserForm } from '../../components/UserForm';
+import { Container } from './styles';
+
 export function User() {
   return (
-    <div>
-      <h1>User</h1>
-    </div>
+    <Container>
+      <h1>Cadastro de Pessoa</h1>
+
+      <UserForm />
+    </Container>
   );
 }
