@@ -1,6 +1,5 @@
 package br.senai.sc.converters;
 
-import br.senai.sc.dtos.AccountDTO;
 import br.senai.sc.dtos.NewTransactionDTO;
 import br.senai.sc.dtos.TransactionDTO;
 import br.senai.sc.dtos.enums.TransactionType;
@@ -36,12 +35,9 @@ public class TransactionConverter {
 
     public TransactionDTO entityToDTO(Transaction transaction) {
 
-        AccountDTO accountDTO = accountConverter.entityToDTO(transaction.getAccount());
-
         TransactionDTO transactionDTO = new TransactionDTO();
 
         transactionDTO.setId(transaction.getId());
-        transactionDTO.setAccountDTO(accountDTO);
         transactionDTO.setValue(transaction.getValue());
         transactionDTO.setDateTime(transaction.getDateTime());
 

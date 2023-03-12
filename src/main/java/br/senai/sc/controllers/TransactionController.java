@@ -6,12 +6,11 @@ import br.senai.sc.dtos.TransactionDTO;
 import br.senai.sc.models.Transaction;
 import br.senai.sc.services.TransactionService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/transactions")
@@ -20,6 +19,13 @@ public class TransactionController {
 
     private final TransactionService transactionService;
     private final TransactionConverter converter;
+
+    @GetMapping("accounts/{accountId}")
+    public List<TransactionDTO> findByAccount(@PathVariable Long accountId) {
+        final List<Transaction> transactions = transactionService.findByAccountId(accountId);
+
+        return transactions.stream().map(converter::entityToDTO).collect(Collectors.toList());
+    }
 
     @PostMapping()
     public TransactionDTO register(@RequestBody @Valid NewTransactionDTO newTransactionDTO) {

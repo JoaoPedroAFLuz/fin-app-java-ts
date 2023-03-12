@@ -12,7 +12,6 @@ public class TransactionDTO {
 
     private Long id;
     private LocalDateTime dateTime;
-    private AccountDTO accountDTO;
     private BigDecimal value;
 
 }
