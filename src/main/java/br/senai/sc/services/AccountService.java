@@ -18,6 +18,11 @@ public class AccountService {
 
     private final AccountRepository accountRepository;
 
+    public Account findById(Long id) {
+        return accountRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Conta não econtrada com id: " + id));
+    }
+
     public List<AccountDTO> findByUserId(Long userId) {
         return accountRepository.findByUserId(userId);
     }

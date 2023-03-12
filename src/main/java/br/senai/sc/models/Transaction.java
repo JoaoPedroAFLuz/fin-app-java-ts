@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
@@ -19,12 +20,17 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    private Account account;
+
+    @Column
+    private BigDecimal value;
+
     @Column
     private LocalDateTime dateTime;
 
-    @Column
-    private Double value;
-
-    @ManyToOne
-    private Account account;
+    @PrePersist
+    public void PrePersist(){
+        this.dateTime = LocalDateTime.now();
+    }
 }
