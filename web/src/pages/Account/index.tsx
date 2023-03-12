@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { applyCPFMask } from '../../utils/applyCPFMask';
 import { api } from '../../utils/api';
 
 import { AccountDTO } from '../../dtos/Account.dto';
@@ -8,8 +7,8 @@ import { UserDTO } from '../../dtos/User.dto';
 
 import { AccountForm } from '../../components/Forms/AccountForm';
 
-import { Container } from './styles';
 import { AccountTable } from '../../components/Tables/AccountTable';
+import { Container } from './styles';
 
 export function Account() {
   const [users, setUsers] = useState<UserDTO[]>([]);
@@ -19,10 +18,6 @@ export function Account() {
     async function loadData() {
       const [{ data: usersResponseData }, { data: AccountsResponseData }] =
         await Promise.all([api.get('/users'), api.get('/accounts')]);
-
-      usersResponseData.forEach(
-        (user: UserDTO) => (user.cpf = applyCPFMask(user.cpf))
-      );
 
       setUsers(usersResponseData);
       setAccounts(AccountsResponseData);

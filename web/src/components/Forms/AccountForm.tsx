@@ -72,7 +72,7 @@ export function AccountForm({ users, onRegisterAccount }: AccountFormProps) {
           onChange={(event) => setUserId(event.target.value)}
         >
           <option value="" placeholder="Selecione uma pessoa *">
-            Selecione uma pessoa
+            Selecione uma pessoa *
           </option>
           {users?.length > 0 &&
             users.map((user) => (

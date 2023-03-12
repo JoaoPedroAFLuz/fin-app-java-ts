@@ -6,6 +6,7 @@ import TableRow from '@mui/material/TableRow';
 
 import { UserDTO } from '../../dtos/User.dto';
 import { api } from '../../utils/api';
+import { applyCPFMask } from '../../utils/applyCPFMask';
 import { StyledTableCell, StyledTableRow } from './styles';
 
 interface UserTableProps {
@@ -40,7 +41,7 @@ export function UserTable({ users, onRemoveUser }: UserTableProps) {
                 <StyledTableCell component="th" scope="row">
                   {user.name}
                 </StyledTableCell>
-                <StyledTableCell>{user.cpf}</StyledTableCell>
+                <StyledTableCell>{applyCPFMask(user.cpf)}</StyledTableCell>
                 <StyledTableCell>{user.email}</StyledTableCell>
                 <StyledTableCell>{user.address}</StyledTableCell>
                 <StyledTableCell>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import { api } from '../../utils/api';
-import { applyCPFMask } from '../../utils/applyCPFMask';
 
 import { UserDTO } from '../../dtos/User.dto';
 
@@ -16,8 +15,6 @@ export function User() {
   useEffect(() => {
     async function loadUsers() {
       const response = await api.get('/users');
-
-      response.data.map((user: UserDTO) => (user.cpf = applyCPFMask(user.cpf)));
 
       setUsers(response.data);
     }

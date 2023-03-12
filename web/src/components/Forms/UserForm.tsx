@@ -12,6 +12,7 @@ import { Input, InputMask } from '../Input';
 
 import { ButtonContainer, Form } from './styles';
 import { UserDTO } from '../../dtos/User.dto';
+import { capitalizeWords } from '../../utils/capitalizeWords';
 
 interface UserFormProps {
   onRegisterUser: (user: UserDTO) => void;
@@ -81,7 +82,7 @@ export function UserForm({ onRegisterUser }: UserFormProps) {
       event.preventDefault();
 
       const user: NewUserDTO = {
-        name,
+        name: capitalizeWords(name),
         cpf,
         email,
         address,
