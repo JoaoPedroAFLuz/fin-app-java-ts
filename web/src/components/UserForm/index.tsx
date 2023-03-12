@@ -11,8 +11,13 @@ import { FormGroup } from '../FormGroup';
 import { Input, InputMask } from '../Input';
 
 import { ButtonContainer, Form } from './styles';
+import { UserDTO } from '../../dtos/User.dto';
 
-export function UserForm() {
+interface UserFormProps {
+  onRegisterUser: (user: UserDTO) => void;
+}
+
+export function UserForm({ onRegisterUser }: UserFormProps) {
   const [name, setName] = useState('');
   const [cpf, setCPF] = useState('');
   const [email, setEmail] = useState('');
@@ -21,7 +26,9 @@ export function UserForm() {
   const { errors, setError, removeError, getErrorMessageByFieldName } =
     useErrors();
 
-  const isFormValid = name && errors.length === 0;
+  const hasEmptyField = !name || !cpf || !email || !address;
+
+  const isFormValid = !hasEmptyField && errors.length === 0;
 
   function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
@@ -79,9 +86,9 @@ export function UserForm() {
       address,
     };
 
-    await api.post('/users', user);
+    const response = await api.post('/users', user);
 
-    console.log(user);
+    onRegisterUser(response.data as UserDTO);
   }
 
   return (

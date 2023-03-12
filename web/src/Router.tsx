@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+
 import { Header } from './components/Header';
 
 import { User } from './pages/User';
@@ -6,7 +7,7 @@ import { User } from './pages/User';
 export function Router() {
   return (
     <Routes>
-      <Route path="/" element={<Header />}>
+      <Route element={<Header />}>
         <Route path="/user" element={<User />} />
       </Route>
 
