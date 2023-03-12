@@ -21,8 +21,4 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    public Double getAccountBalance(Long accountId){
-        return transactionRepository.getBalanceByAccountId(accountId);
-    }
-
 }

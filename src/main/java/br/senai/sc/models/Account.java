@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -23,5 +25,10 @@ public class Account {
 
     @ManyToOne
     private User user;
+
+    @Formula("(SELECT SUM(COALESCE(t.value, 0)) "
+            + "FROM transactions t "
+            + "WHERE t.account_id = id)")
+    private BigDecimal balance;
 
 }

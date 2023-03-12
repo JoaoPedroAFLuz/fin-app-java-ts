@@ -20,7 +20,7 @@ public class AccountService {
 
     public Account findById(Long id) {
         return accountRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Conta não econtrada com id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Conta não encontrada com id: " + id));
     }
 
     public List<AccountDTO> findByUserId(Long userId) {

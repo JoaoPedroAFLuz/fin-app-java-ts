@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 public class TransactionConverter {
 
     private final AccountService accountService;
-    private final AccountConverter accountConverter;
 
     public Transaction dtoToEntity(NewTransactionDTO transactionDTO) {
 
