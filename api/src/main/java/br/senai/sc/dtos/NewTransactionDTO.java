@@ -19,7 +19,6 @@ public class NewTransactionDTO {
     private BigDecimal value;
 
     @NotNull(message = "Tipo de movimentação é obrigatório.")
-
     private TransactionType type;
 
 }

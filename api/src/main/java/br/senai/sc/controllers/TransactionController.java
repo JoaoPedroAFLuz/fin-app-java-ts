@@ -20,8 +20,8 @@ public class TransactionController {
     private final TransactionService transactionService;
     private final TransactionConverter converter;
 
-    @GetMapping("accounts/{accountId}")
-    public List<TransactionDTO> findByAccount(@PathVariable Long accountId) {
+    @GetMapping("by-account")
+    public List<TransactionDTO> findByAccount(@RequestParam("accountId") Long accountId) {
         final List<Transaction> transactions = transactionService.findByAccountId(accountId);
 
         return transactions.stream().map(converter::entityToDTO).collect(Collectors.toList());
