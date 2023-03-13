@@ -166,3 +166,17 @@ Foi implementado um service relacionado à account que possui metódos para busc
 ### Transaction:
 
 Foi implementado um service relacionado à transaction que possui metódos para buscar pelo id da conta, e salvar.
+
+## Controllers:
+
+### User:
+
+Foi implementado um controller relacionado ao user que possui rotas para buscar todos, buscar pelo email, registrar e deletar.
+
+### Account:
+
+Foi implementado um controller relacionado à account que possui rotas para buscar todas, buscar pelo id do user, registrar e deletar.
+
+### Transaction:
+
+Foi implementado um controller relacionado à transaction que possui rotas para buscar pelo id da account e registrar.
