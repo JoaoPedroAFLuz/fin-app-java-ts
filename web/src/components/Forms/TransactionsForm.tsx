@@ -85,8 +85,19 @@ export function TransactionForm({
     try {
       event.preventDefault();
 
-      if (transactionType === '') {
+      const currentAccount = accounts.find(
+        (account) => account.id === Number(accountId)
+      );
+
+      if (transactionType === '' || !currentAccount) {
         return;
+      }
+
+      if (
+        transactionType === 'DEBIT' &&
+        Number(transactionValue) > currentAccount.balance
+      ) {
+        return alert('Saldo insuficiente');
       }
 
       const transaction: NewTransactionDTO = {
