@@ -152,3 +152,17 @@ Foi implementado um repository relacionado à account que estende o JpaRepositor
 ### Transaction:
 
 Foi implementado um repository relacionado à trasaction que estende o JpaRepository e possui apenas um metódo que retorna uma lista de Transaction com base no id da account.
+
+## Services:
+
+### User:
+
+Foi implementado um service relacionado ao user que possui metódos para buscar todos, buscar pelo  id, buscar pelo email, salvar e deletar pelo id.
+
+### Account:
+
+Foi implementado um service relacionado à account que possui metódos para buscar todos, buscar pelo id, buscar pelo id do user, salvar e deletar pelo id.
+
+### Transaction:
+
+Foi implementado um service relacionado à transaction que possui metódos para buscar pelo id da conta, e salvar.
