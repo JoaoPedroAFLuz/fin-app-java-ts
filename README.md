@@ -169,6 +169,10 @@ Foi implementado um service relacionado à transaction que possui metódos para 
 
 ## Controllers:
 
+### Não implementado:
+
+Rotas para edição. Motivo: ocorreu alguns erros no desenvolvimento e acabei ficando sem tempo hábil para resolver.
+
 ### User:
 
 Foi implementado um controller relacionado ao user que possui rotas para buscar todos, buscar pelo email, registrar e deletar.
@@ -190,3 +194,9 @@ Foi implementado um DTO (Data Transfer Object) para troca de dados referente a e
 ### ControllerExceptionHandler :
 
 Foi implementado um rest controller advice para manipular as exceções emitidas pela API que envia um objeto do tipo ErrorResponseDTO quando não encontrar o dado que o cliente requisitou ou quando o cliente envia uma requisição inválida.
+
+## Config
+
+### CorsConfiguration
+
+Foi implementada a configuração de CORS para permitir requisições web de todas origens com os metódos GET, POST, PUT e DELETE e com todos os headers
