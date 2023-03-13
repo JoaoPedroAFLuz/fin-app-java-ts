@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -21,9 +22,11 @@ public class Transaction {
     private Long id;
 
     @ManyToOne
+    @NotNull(message = "Conta é obrigatória")
     private Account account;
 
     @Column
+    @NotNull(message = "Valor é obrigatório")
     private BigDecimal value;
 
     @Column

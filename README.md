@@ -171,7 +171,7 @@ Foi implementado um service relacionado à transaction que possui metódos para 
 
 ### Não implementado:
 
-Rotas para edição. Motivo: ocorreu alguns erros no desenvolvimento e acabei ficando sem tempo hábil para resolver.
+Rotas para edição. Motivo: ocorreu alguns erros no desenvolvimento e somando a motivos externos não consegui temp para desenvolvê-las.
 
 ### User:
 
@@ -195,8 +195,68 @@ Foi implementado um DTO (Data Transfer Object) para troca de dados referente a e
 
 Foi implementado um rest controller advice para manipular as exceções emitidas pela API que envia um objeto do tipo ErrorResponseDTO quando não encontrar o dado que o cliente requisitou ou quando o cliente envia uma requisição inválida.
 
-## Config
+## Config:
 
-### CorsConfiguration
+### CorsConfiguration:
 
 Foi implementada a configuração de CORS para permitir requisições web de todas origens com os metódos GET, POST, PUT e DELETE e com todos os headers
+
+## Components:
+
+Foram implementados componentes customizados para input, select, button, header, forms, formGroup e tables.
+
+## Hooks:
+
+Foi implementado um hook customizado para auxiliar a gerenciar os erros emitidos pelo usuário.
+
+### Pages:
+
+Foram implementadas três telas referentes ao User (Pessoa), Account (Conta) e Transaction (Movimentação).
+
+## Assets:
+
+Foram implementados styles com default theme e globalStyels, além de imagens relacionadas ao FIESC para a aplicação no geral.
+
+## Bibliotecas externas utilizadas:
+
+## React:
+
+Biblioteca para auxiliar na criação de toda a aplicação web.
+
+### React Router Dom:
+
+Biblioteca para auxiliar na navegação entre as telas.
+
+### Axios:
+
+Biblioteca utilizada para auxiliar na realização das requests na API.
+
+### Styled Components:
+
+Biblioteca para auxiliar na estilização dos componentes e telas.
+
+### Moment.js:
+
+Biblioteca que facilita a utilização de datas.
+
+### Mui Material:
+
+Biblioteca utilizada para auxiliar na criação das tabelas.
+
+### React Input Mask:
+
+Biblioteca utilizada  para auxiliar na criação de inputs com máscara.
+
+## Eslint
+
+Lint para auxiliar no desenvolvimento da aplicação.
+
+## Prettier
+
+Formatador de código para auxiliar na padronização de todo o código.
+
+
+
+
+
+

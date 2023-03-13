@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Getter
@@ -21,9 +22,11 @@ public class Account {
     private Long id;
 
     @Column(unique = true)
+    @NotNull(message = "Número da conta é obrigatório.")
     private Integer registrationCode;
 
     @ManyToOne
+    @NotNull(message = "Usuário é obrigatório.")
     private User user;
 
     @Formula("(SELECT SUM(COALESCE(t.value, 0)) "
