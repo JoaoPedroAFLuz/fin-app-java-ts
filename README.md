@@ -124,3 +124,17 @@ Foi implementado um DTO (Data Transfer Object) para recebimentos de dados para c
 ### New Transaction:
 
 Foi implementado um DTO (Data Transfer Object) para recebimentos de dados para criação de um nova transaction (Movimentação) com as seguintes propriedades: Long accountId, BigDecimal value e TransactionType (Enum com os seguintes valores: DEBIT e CREDIT) type. Nenhuma das suas propriedades podem ser nulas.
+
+## Converters:
+
+### User: 
+
+Foi implementado um componente para auxiliar na tradução de objetos DTO para Entidade e de Entidade para DTO relacionadas ao user. Há dois metodos, um responsável por receber um NewUserDTO e retornar um User e outro responsável por receber um User e retornar um UserDTO.
+
+### Account: 
+
+Foi implementado um componente para auxiliar na tradução de objetos DTO para Entidade e de Entidade para DTO relacionadas à account. Há dois metodos, um responsável por receber um NewAccountDTO e retornar um Account e outro responsável por receber um Account e retornar um AccountDTO.
+
+### Transaction: 
+
+Foi implementado um componente para auxiliar na tradução de objetos DTO para Entidade e de Entidade para DTO relacionadas à transaction. Há dois metodos, um responsável por receber um NewTransactionDTO e retornar um Transaction e outro responsável por receber um Transaction e retornar um TransactionDTO.
