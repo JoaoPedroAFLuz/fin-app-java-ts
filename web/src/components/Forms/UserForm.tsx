@@ -15,10 +15,11 @@ import { UserDTO } from '../../dtos/User.dto';
 import { capitalizeWords } from '../../utils/capitalizeWords';
 
 interface UserFormProps {
+  users: UserDTO[];
   onRegisterUser: (user: UserDTO) => void;
 }
 
-export function UserForm({ onRegisterUser }: UserFormProps) {
+export function UserForm({ users, onRegisterUser }: UserFormProps) {
   const [name, setName] = useState('');
   const [cpf, setCPF] = useState('');
   const [email, setEmail] = useState('');
@@ -80,6 +81,16 @@ export function UserForm({ onRegisterUser }: UserFormProps) {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     try {
       event.preventDefault();
+
+      const cpfAlreadyExists = users.find((user) => user.cpf === cpf);
+      if (cpfAlreadyExists) {
+        return alert('CPF já cadastrado');
+      }
+
+      const emailAlreadyExists = users.find((user) => user.email === email);
+      if (emailAlreadyExists) {
+        return alert('Email já cadastrado');
+      }
 
       const user: NewUserDTO = {
         name: capitalizeWords(name),

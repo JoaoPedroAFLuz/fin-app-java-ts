@@ -34,7 +34,7 @@ export function User() {
     <Container>
       <h1>Cadastro de Pessoa</h1>
 
-      <UserForm onRegisterUser={setNewUser} />
+      <UserForm users={users} onRegisterUser={setNewUser} />
 
       <UserTable users={users} onRemoveUser={removeUser} />
     </Container>
