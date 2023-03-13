@@ -85,6 +85,8 @@ qualquer outro serviço que esteja utilizando a porta 5432. Para verificar se o 
 
 # Detalhamento as funcionalidades implementadas
 
+** Por motivos de erros ao tentar utilizar a versão 17 LTS do Java acabei tento que desenvolver na versão 11 LTS (que terá suporte pelo menos até 2026) **
+
 ## Models:
 
 ### User (Pessoa):
@@ -219,7 +221,7 @@ Foram implementados styles com default theme e globalStyels, além de imagens re
 
 ## Bibliotecas externas utilizadas:
 
-## React:
+### React:
 
 Biblioteca para auxiliar na criação de toda a aplicação web.
 
@@ -247,11 +249,11 @@ Biblioteca utilizada para auxiliar na criação das tabelas.
 
 Biblioteca utilizada  para auxiliar na criação de inputs com máscara.
 
-## Eslint
+### Eslint
 
 Lint para auxiliar no desenvolvimento da aplicação.
 
-## Prettier
+### Prettier
 
 Formatador de código para auxiliar na padronização de todo o código.
 
