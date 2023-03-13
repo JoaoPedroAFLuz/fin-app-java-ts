@@ -40,7 +40,11 @@ export function Account() {
     <Container>
       <h1>Cadastro de Conta</h1>
 
-      <AccountForm users={users} onRegisterAccount={handleRegisterAccount} />
+      <AccountForm
+        users={users}
+        accounts={accounts}
+        onRegisterAccount={handleRegisterAccount}
+      />
 
       <AccountTable accounts={accounts} onRemoveAccount={handleRemoveAccount} />
     </Container>

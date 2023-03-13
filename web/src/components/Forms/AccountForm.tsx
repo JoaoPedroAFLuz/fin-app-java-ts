@@ -17,10 +17,15 @@ import { ButtonContainer, Form } from './styles';
 
 interface AccountFormProps {
   users: UserDTO[];
+  accounts: AccountDTO[];
   onRegisterAccount: (account: AccountDTO) => void;
 }
 
-export function AccountForm({ users, onRegisterAccount }: AccountFormProps) {
+export function AccountForm({
+  users,
+  accounts,
+  onRegisterAccount,
+}: AccountFormProps) {
   const [userId, setUserId] = useState('');
   const [registrationCode, setRegistrationCode] = useState('');
 
@@ -51,6 +56,13 @@ export function AccountForm({ users, onRegisterAccount }: AccountFormProps) {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     try {
       event.preventDefault();
+
+      const registrationCodeAlreadyExists = accounts.some(
+        (account) => account.registrationCode === Number(registrationCode)
+      );
+      if (registrationCodeAlreadyExists) {
+        return alert('Número da conta já cadastrado');
+      }
 
       const account: NewAccountDTO = {
         userId: Number(userId),
