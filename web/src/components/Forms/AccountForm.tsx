@@ -6,6 +6,7 @@ import { UserDTO } from '../../dtos/User.dto';
 
 import { useErrors } from '../../hooks/useErrors';
 import { api } from '../../utils/api';
+import { applyCPFMask } from '../../utils/applyCPFMask';
 
 import { Button } from '../Button';
 import { FormGroup } from '../FormGroup';
@@ -35,6 +36,8 @@ export function AccountForm({ users, onRegisterAccount }: AccountFormProps) {
   ) {
     const { value } = event.target;
 
+    setRegistrationCode(value);
+
     if (!value) {
       setError({
         field: 'registrationCode',
@@ -43,8 +46,6 @@ export function AccountForm({ users, onRegisterAccount }: AccountFormProps) {
     } else {
       removeError({ field: 'registrationCode' });
     }
-
-    setRegistrationCode(value);
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -77,7 +78,7 @@ export function AccountForm({ users, onRegisterAccount }: AccountFormProps) {
           {users?.length > 0 &&
             users.map((user) => (
               <option key={user.id} value={user.id}>
-                {user.name} - {user.cpf}
+                {user.name} - {applyCPFMask(user.cpf)}
               </option>
             ))}
         </Select>
