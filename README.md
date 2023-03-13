@@ -55,11 +55,11 @@ qualquer outro serviço que esteja utilizando a porta 5432. Para verificar se o 
 
 - Ir em "File > Import..." e escolher a opção conforme segue:
 
-  ![prova-java-spring](src/main/resources/static/img/import_project.png)
+  ![prova-java-spring](api/src/main/resources/static/img/import_project.png)
 
 - Selecionar a pasta do projeto e confirmar como segue:
 
-  ![prova-java-spring](src/main/resources/static/img/import_project_confirmation.png)
+  ![prova-java-spring](api/src/main/resources/static/img/import_project_confirmation.png)
 
 - Em *Select root repository* escolher a pasta do projeto e clicar em *Finish*.
 
@@ -68,12 +68,12 @@ qualquer outro serviço que esteja utilizando a porta 5432. Para verificar se o 
 - Selecionar o projeto:
 - No combo do botão run circulado na imagem abaixo, escolher a opção Run As e depois Spring Boot App.
 
-  ![prova-java-spring](src/main/resources/static/img/start_project.png)
+  ![prova-java-spring](api/src/main/resources/static/img/start_project.png)
 
 
 - No navegador digitar http://localhost:8080/, irá mostrar uma tela inicial conforme abaixo:
 
-  ![prova-java-spring](src/main/resources/static/img/page_user.png)
+  ![prova-java-spring](api/src/main/resources/static/img/page_user.png)
 
 [sts-windows]: https://download.springsource.com/release/STS4/4.11.0.RELEASE/dist/e4.20/spring-tool-suite-4-4.11.0.RELEASE-e4.20.0-win32.win32.x86_64.self-extracting.jar
 
@@ -82,3 +82,25 @@ qualquer outro serviço que esteja utilizando a porta 5432. Para verificar se o 
 [sts-mac]: https://download.springsource.com/release/STS4/4.11.0.RELEASE/dist/e4.20/spring-tool-suite-4-4.11.0.RELEASE-e4.20.0-macosx.cocoa.x86_64.dmg
 
 [lombok]: https://projectlombok.org/setup/eclipse
+
+# Detalhamento as funcionalidades implementadas
+
+## Models:
+
+#### User (Pessoa):
+
+Foi implementada a entidade user (Pessoa) com as seguintes propriedadas: Long id (chave primária e gerado automaticamente), String name (não podendo ser vazio), String email (não podendo ser vazio, necessita seguir padrão de um email e deve ser único), String address (não podendo ser vazio), String cpf (não podendo ser vazio e deve ser únido) .
+
+#### Account (Conta):
+
+Foi implementada a entidade account (Conta) com as seguintes propriedades: Long id (chave primária e gerado automaticamente), Integer registrationCode (número de registro da conta, não podendo ser nulo e que deve ser único), User user (usuário relacionado à conta, podendo ter várias contas com o mesmo usuário e não podendo ser nulo) e BigDecimal balance (saldo que é obtido ao fazer uma busca por conta, detalhe que ele não se torna uma coluna no banco).
+
+#### Transaction (Movimentação):
+
+Foi implementada a entidade transaction (Movimentação) com as seguintes propriedades: Long id (chave primária e gerado automaticamente), Account account (conta relacionada à movimentação, podendo ter várias movimentações na mesma conta, não podendo ser nula), BigDecimal value (valor referente à movimentação, não podendo ser nulo) e LocalDateTime dateTime (data e hora da movimentação criada autmaticamente pelo metódo PrePersist).
+
+## DTOs: 
+
+### Account:
+
+Foi implementado um DTO (Data Transfer Object) para envio de dados da entidade account (Conta) com as seguintes propriedades: id, registrationCode, user e balance. Esse DTO possui um construtor 
