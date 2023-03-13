@@ -6,3 +6,8 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const Balance = styled.span`
+  margin-top: 1rem;
+  font-size: 1.5rem;
+`;

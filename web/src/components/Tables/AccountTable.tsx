@@ -24,7 +24,7 @@ export function AccountTable({ accounts, onRemoveAccount }: AccountTableProps) {
 
   return (
     <>
-      <TableContainer sx={{ marginTop: 8 }}>
+      <TableContainer>
         <Table>
           <TableHead>
             <TableRow>

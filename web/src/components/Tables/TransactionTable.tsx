@@ -16,7 +16,7 @@ interface TransactionTableProps {
 
 export function TransactionTable({ transactions }: TransactionTableProps) {
   return (
-    <TableContainer sx={{ marginTop: 8 }}>
+    <TableContainer>
       <Table>
         <TableHead>
           <TableRow>

@@ -23,7 +23,7 @@ export function UserTable({ users, onRemoveUser }: UserTableProps) {
 
   return (
     <>
-      <TableContainer sx={{ marginTop: 8 }}>
+      <TableContainer>
         <Table>
           <TableHead>
             <TableRow>

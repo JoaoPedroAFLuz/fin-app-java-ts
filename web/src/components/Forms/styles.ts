@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-  margin-top: 2rem;
+  margin: 2rem;
 `;
 
 export const ButtonContainer = styled.div`
