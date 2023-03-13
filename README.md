@@ -138,3 +138,17 @@ Foi implementado um componente para auxiliar na tradução de objetos DTO para E
 ### Transaction: 
 
 Foi implementado um componente para auxiliar na tradução de objetos DTO para Entidade e de Entidade para DTO relacionadas à transaction. Há dois metodos, um responsável por receber um NewTransactionDTO e retornar um Transaction e outro responsável por receber um Transaction e retornar um TransactionDTO.
+
+## Repositories:
+
+### User:
+
+Foi implementado um repository relacionado ao user que estende o JpaRepository e possui apenas um metódo que retorna o usuário com base no email.
+
+### Account:
+
+Foi implementado um repository relacionado à account que estende o JpaRepository e possui apenas um metódo que retorna uma lista de AccountDTO com base no id do user.
+
+### Transaction:
+
+Foi implementado um repository relacionado à trasaction que estende o JpaRepository e possui apenas um metódo que retorna uma lista de Transaction com base no id da account.
