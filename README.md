@@ -180,3 +180,13 @@ Foi implementado um controller relacionado à account que possui rotas para busc
 ### Transaction:
 
 Foi implementado um controller relacionado à transaction que possui rotas para buscar pelo id da account e registrar.
+
+## Exceptions:
+
+### ErrorResponseDTO:
+
+Foi implementado um DTO (Data Transfer Object) para troca de dados referente a errors com as seguintes propriedades: Integer status, String error, String message, String path, List FieldMessage(String fieldName, String message) errors. 
+
+### ControllerExceptionHandler :
+
+Foi implementado um rest controller advice para manipular as exceções emitidas pela API que envia um objeto do tipo ErrorResponseDTO quando não encontrar o dado que o cliente requisitou ou quando o cliente envia uma requisição inválida.
