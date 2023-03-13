@@ -87,21 +87,21 @@ qualquer outro serviço que esteja utilizando a porta 5432. Para verificar se o 
 
 ## Models:
 
-#### User (Pessoa):
+### User (Pessoa):
 
 Foi implementada a entidade user (Pessoa) com as seguintes propriedadas: Long id (chave primária e gerado automaticamente), String name (não podendo ser vazio), String email (não podendo ser vazio, necessita seguir padrão de um email e deve ser único), String address (não podendo ser vazio), String cpf (não podendo ser vazio e deve ser únido) .
 
-#### Account (Conta):
+### Account (Conta):
 
 Foi implementada a entidade account (Conta) com as seguintes propriedades: Long id (chave primária e gerado automaticamente), Integer registrationCode (número de registro da conta, não podendo ser nulo e que deve ser único), User user (usuário relacionado à conta, podendo ter várias contas com o mesmo usuário e não podendo ser nulo) e BigDecimal balance (saldo que é obtido ao fazer uma busca por conta, detalhe que ele não se torna uma coluna no banco).
 
-#### Transaction (Movimentação):
+### Transaction (Movimentação):
 
 Foi implementada a entidade transaction (Movimentação) com as seguintes propriedades: Long id (chave primária e gerado automaticamente), Account account (conta relacionada à movimentação, podendo ter várias movimentações na mesma conta, não podendo ser nula), BigDecimal value (valor referente à movimentação, não podendo ser nulo) e LocalDateTime dateTime (data e hora da movimentação criada autmaticamente pelo metódo PrePersist).
 
 ## DTOs: 
 
-#### User:
+### User:
 
 Foi implementado um DTO (Data Transfer Object) para troca de dados da entidade user (Pessoa) com as seguintes propriedades: Long id, String name, String, email, String address, String cpf. Esse DTO possui um construtor personalizado que instância um novo UserDTO com base em um User.
 
@@ -109,7 +109,7 @@ Foi implementado um DTO (Data Transfer Object) para troca de dados da entidade u
 
 Foi implementado um DTO (Data Transfer Object) para troca de dados da entidade account (Conta) com as seguintes propriedades: Long id, Integer registrationCode, UserDTP user e BigDecimal balance. Esse DTO possui um construtor personalizado que recebe todas as propriedades mencionadas, mas com um User em vez de UserDTO e a partir do User gerar o UserDTO.
 
-#### Transaction
+### Transaction
 
 Foi implementado um DTO (Data Transfer Object) para troca de dados da entidade transaction (Movimentação) com as seguintes propriedades: Long id LocalDateTime dateTime e BigDecimal value.
 
@@ -117,10 +117,10 @@ Foi implementado um DTO (Data Transfer Object) para troca de dados da entidade t
 
 Foi implementado um DTO (Data Transfer Object) para recebimentos de dados para criação de um novo user (Pessoa) com as seguintes propriedades: String name, String email, String address e String cpf. Nenhuma das suas propriedades podem ser vazias.
 
-#### NewAccount:
+### NewAccount:
 
 Foi implementado um DTO (Data Transfer Object) para recebimentos de dados para criação de um nova account (Conta) com as seguintes propriedades: Long userId e Integer registrationCode. Nenhuma das suas propriedados podem ser nulas.
 
-#### New Transaction:
+### New Transaction:
 
 Foi implementado um DTO (Data Transfer Object) para recebimentos de dados para criação de um nova transaction (Movimentação) com as seguintes propriedades: Long accountId, BigDecimal value e TransactionType (Enum com os seguintes valores: DEBIT e CREDIT) type. Nenhuma das suas propriedades podem ser nulas.
