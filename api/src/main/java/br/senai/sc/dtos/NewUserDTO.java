@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -21,6 +22,7 @@ public class NewUserDTO {
     private String address;
 
     @NotEmpty(message = "CPF é obrigatório.")
+    @Size(min = 11, max = 11, message = "Valor inválido.")
     private String cpf;
 
 }

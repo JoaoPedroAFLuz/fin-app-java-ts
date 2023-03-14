@@ -22,7 +22,6 @@ public class Transaction {
     private Long id;
 
     @ManyToOne
-    @NotNull(message = "Conta é obrigatória")
     private Account account;
 
     @Column

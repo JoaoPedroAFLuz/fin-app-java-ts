@@ -37,9 +37,16 @@ public class AccountController {
     @ResponseStatus(HttpStatus.CREATED)
     public AccountDTO register(@RequestBody @Valid NewAccountDTO newAccountDTO) {
         final Account account = converter.dtoToEntity(newAccountDTO);
-        final Account accountPersisted = accountService.save(account);
+        final Account accountPersisted = accountService.register(account);
 
         return converter.entityToDTO(accountPersisted);
+    }
+
+    @PutMapping("/{id}")
+    public AccountDTO register(@PathVariable Long id, @RequestBody @Valid AccountDTO accountDTO) {
+        final Account accountUpdated = accountService.update(id, accountDTO);
+
+        return converter.entityToDTO(accountUpdated);
     }
 
     @DeleteMapping("/{id}")

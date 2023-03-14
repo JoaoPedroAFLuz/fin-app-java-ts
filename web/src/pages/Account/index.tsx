@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 
-import { api } from '../../utils/api';
-
 import { AccountDTO } from '../../dtos/Account.dto';
 import { UserDTO } from '../../dtos/User.dto';
+import { api } from '../../utils/api';
 
 import { AccountForm } from '../../components/Forms/AccountForm';
-
 import { AccountTable } from '../../components/Tables/AccountTable';
-import { Container } from './styles';
+
+import arrow from '../../assets/images/arrow.svg';
+
+import { Container, Header } from './styles';
 
 export function Account() {
   const [users, setUsers] = useState<UserDTO[]>([]);
+  const [account, setAccount] = useState<AccountDTO | null>(null);
   const [accounts, setAccounts] = useState<AccountDTO[]>([]);
 
   useEffect(() => {
@@ -26,8 +28,22 @@ export function Account() {
     loadData();
   }, []);
 
-  function handleRegisterAccount(account: AccountDTO) {
-    setAccounts((prevState) => [...prevState, account]);
+  function handleSubmit(account: AccountDTO, updated: boolean) {
+    if (!updated) {
+      return setAccounts((prevState) => [...prevState, account]);
+    }
+
+    setAccounts((prevState) =>
+      prevState.map((account) =>
+        account.id === account.id ? account : account
+      )
+    );
+
+    return setAccount(null);
+  }
+
+  function handleSelectAccount(account: AccountDTO) {
+    setAccount(account);
   }
 
   function handleRemoveAccount(accountId: number) {
@@ -38,15 +54,23 @@ export function Account() {
 
   return (
     <Container>
-      <h1>Cadastro de Conta</h1>
+      <Header>
+        {account && <img src={arrow} alt="" onClick={() => setAccount(null)} />}
+        <h1>{account?.id ? 'Edição' : 'Cadastro'} de Conta</h1>
+      </Header>
 
       <AccountForm
         users={users}
+        account={account}
         accounts={accounts}
-        onRegisterAccount={handleRegisterAccount}
+        onRegisterAccount={handleSubmit}
       />
 
-      <AccountTable accounts={accounts} onRemoveAccount={handleRemoveAccount} />
+      <AccountTable
+        accounts={accounts}
+        onSelectAccount={handleSelectAccount}
+        onRemoveAccount={handleRemoveAccount}
+      />
     </Container>
   );
 }

@@ -15,10 +15,44 @@ import java.util.stream.Collectors;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponseDTO EntityNotFound(EntityNotFoundException e, HttpServletRequest request) {
         return ErrorResponseDTO.builder()
                 .status(HttpStatus.NOT_FOUND.value())
                 .error("Entidade não encontrada")
+                .message(e.getMessage())
+                .path(request.getRequestURI())
+                .build();
+    }
+
+    @ExceptionHandler(EntityAlreadyExists.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponseDTO EntityNotFound(EntityAlreadyExists e, HttpServletRequest request) {
+        return ErrorResponseDTO.builder()
+                .status(HttpStatus.BAD_REQUEST.value())
+                .error("Erro ao realizar cadastro")
+                .message(e.getMessage())
+                .path(request.getRequestURI())
+                .build();
+    }
+
+    @ExceptionHandler(InsufficientBalanceException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponseDTO EntityNotFound(InsufficientBalanceException e, HttpServletRequest request) {
+        return ErrorResponseDTO.builder()
+                .status(HttpStatus.BAD_REQUEST.value())
+                .error("Erro ao realizar transação")
+                .message(e.getMessage())
+                .path(request.getRequestURI())
+                .build();
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponseDTO EntityNotFound(RuntimeException e, HttpServletRequest request) {
+        return ErrorResponseDTO.builder()
+                .status(HttpStatus.BAD_REQUEST.value())
+                .error("Erro ao realizar operação")
                 .message(e.getMessage())
                 .path(request.getRequestURI())
                 .build();

@@ -13,13 +13,30 @@ import { StyledTableCell, StyledTableRow } from './styles';
 
 interface AccountTableProps {
   accounts: AccountDTO[];
+  onSelectAccount: (account: AccountDTO) => void;
   onRemoveAccount: (accountId: number) => void;
 }
 
-export function AccountTable({ accounts, onRemoveAccount }: AccountTableProps) {
-  async function handleDeleteAccount(id: number) {
-    await api.delete(`/accounts/${id}`);
-    onRemoveAccount(id);
+export function AccountTable({
+  accounts,
+  onSelectAccount,
+  onRemoveAccount,
+}: AccountTableProps) {
+  async function handleDeleteAccount(account: AccountDTO) {
+    const { data } = await api.get(`/transactions/by-account`, {
+      params: {
+        accountId: account.id,
+      },
+    });
+
+    if (data.length > 0) {
+      return alert('Não é possível excluir um conta que possui transações');
+    }
+
+    if (confirm('Deseja realmente excluir este conta?') === true) {
+      await api.delete(`/accounts/${account.id}`);
+      onRemoveAccount(account.id);
+    }
   }
 
   return (
@@ -46,10 +63,12 @@ export function AccountTable({ accounts, onRemoveAccount }: AccountTableProps) {
                 </StyledTableCell>
                 <StyledTableCell>{account.registrationCode}</StyledTableCell>
                 <StyledTableCell>
-                  <button>Editar</button>
+                  <button onClick={() => onSelectAccount(account)}>
+                    Editar
+                  </button>
                 </StyledTableCell>
                 <StyledTableCell>
-                  <button onClick={() => handleDeleteAccount(account.id)}>
+                  <button onClick={() => handleDeleteAccount(account)}>
                     Remover
                   </button>
                 </StyledTableCell>

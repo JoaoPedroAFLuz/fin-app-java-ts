@@ -11,11 +11,20 @@ import { StyledTableCell, StyledTableRow } from './styles';
 
 interface UserTableProps {
   users: UserDTO[];
+  onSelectUser: (user: UserDTO) => void;
   onRemoveUser: (userId: number) => void;
 }
 
-export function UserTable({ users, onRemoveUser }: UserTableProps) {
+export function UserTable({
+  users,
+  onSelectUser,
+  onRemoveUser,
+}: UserTableProps) {
   async function handleDeleteUSer(id: number) {
+    if (!confirm('Tem certeza que deseja excluir este usuário?')) {
+      return;
+    }
+
     await api.delete(`/users/${id}`);
 
     onRemoveUser(id);
@@ -45,7 +54,7 @@ export function UserTable({ users, onRemoveUser }: UserTableProps) {
                 <StyledTableCell>{user.email}</StyledTableCell>
                 <StyledTableCell>{user.address}</StyledTableCell>
                 <StyledTableCell>
-                  <button>Editar</button>
+                  <button onClick={() => onSelectUser(user)}>Editar</button>
                 </StyledTableCell>
                 <StyledTableCell>
                   <button onClick={() => handleDeleteUSer(user.id)}>

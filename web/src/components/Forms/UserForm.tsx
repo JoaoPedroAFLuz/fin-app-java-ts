@@ -1,4 +1,5 @@
-import { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { useEffect, useState } from 'react';
 
 import { NewUserDTO } from '../../dtos/NewUser.dtos';
 import { useErrors } from '../../hooks/useErrors';
@@ -15,11 +16,12 @@ import { UserDTO } from '../../dtos/User.dto';
 import { capitalizeWords } from '../../utils/capitalizeWords';
 
 interface UserFormProps {
+  user: UserDTO | null;
   users: UserDTO[];
-  onRegisterUser: (user: UserDTO) => void;
+  onSubmit: (user: UserDTO, updated: boolean) => void;
 }
 
-export function UserForm({ users, onRegisterUser }: UserFormProps) {
+export function UserForm({ user, users, onSubmit }: UserFormProps) {
   const [name, setName] = useState('');
   const [cpf, setCPF] = useState('');
   const [email, setEmail] = useState('');
@@ -32,8 +34,18 @@ export function UserForm({ users, onRegisterUser }: UserFormProps) {
 
   const isFormValid = !hasEmptyField && errors.length === 0;
 
+  useEffect(() => {
+    setName(user?.name || '');
+    setCPF(user?.cpf || '');
+    setEmail(user?.email || '');
+    setAddress(user?.address || '');
+  }, [user]);
+
   function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = event.target;
+    let { value } = event.target;
+
+    value = value.replace(/\d/g, '');
+
     setName(value);
 
     if (!value) {
@@ -82,29 +94,60 @@ export function UserForm({ users, onRegisterUser }: UserFormProps) {
     try {
       event.preventDefault();
 
-      const cpfAlreadyExists = users.some((user) => user.cpf === cpf);
-      if (cpfAlreadyExists) {
-        return alert('CPF já cadastrado');
+      if (!user?.id) {
+        registerUser();
+      } else {
+        updateUser();
       }
 
-      const emailAlreadyExists = users.some((user) => user.email === email);
-      if (emailAlreadyExists) {
-        return alert('Email já cadastrado');
-      }
-
-      const user: NewUserDTO = {
-        name: capitalizeWords(name),
-        cpf,
-        email,
-        address,
-      };
-
-      const response = await api.post('/users', user);
-
-      onRegisterUser(response.data as UserDTO);
+      clearFields();
     } catch {
-      console.log('Erro ao cadastrar usuário');
+      console.log('Erro ao salvar usuário');
     }
+  }
+
+  async function registerUser() {
+    const cpfAlreadyExists = users.some((user) => user.cpf === cpf);
+    if (cpfAlreadyExists) {
+      return alert('CPF já cadastrado');
+    }
+
+    const emailAlreadyExists = users.some((user) => user.email === email);
+    if (emailAlreadyExists) {
+      return alert('Email já cadastrado');
+    }
+
+    const user: NewUserDTO = {
+      name: capitalizeWords(name!),
+      cpf: cpf!,
+      email: email!,
+      address: address!,
+    };
+
+    const { data } = await api.post('/users', user);
+
+    onSubmit(data, false);
+  }
+
+  async function updateUser() {
+    const userDTO: UserDTO = {
+      id: user!.id,
+      name: capitalizeWords(name!),
+      cpf: cpf!,
+      email: email!,
+      address: address!,
+    };
+
+    const { data } = await api.put(`/users/${user!.id}`, userDTO);
+
+    onSubmit(data, true);
+  }
+
+  function clearFields() {
+    setName('');
+    setCPF('');
+    setEmail('');
+    setAddress('');
   }
 
   return (
@@ -124,6 +167,7 @@ export function UserForm({ users, onRegisterUser }: UserFormProps) {
           placeholder="CPF *"
           mask="999.999.999-99"
           value={cpf}
+          disabled={!!user?.id}
           onChange={handleCPFChange}
         />
       </FormGroup>

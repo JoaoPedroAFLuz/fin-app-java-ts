@@ -17,4 +17,10 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
             + "WHERE a.user.id = :userId "
             + "GROUP BY a.id")
     List<AccountDTO> findByUserId(@Param("userId") Long userId);
+
+    boolean existsByRegistrationCode(Integer registrationCode);
+
+    boolean existsByUserId(Long id);
+
+
 }

@@ -12,4 +12,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     @Query("FROM Transaction t WHERE t.account.id = :accountId ORDER BY t.dateTime DESC")
     List<Transaction> findByAccountId(@Param("accountId") Long accountId);
 
+    boolean existsByAccountId(Long account);
 }

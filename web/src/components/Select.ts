@@ -22,5 +22,6 @@ export const Select = styled.select`
     background: ${({ theme }) => theme.colors.gray[100]};
     border-color: ${({ theme }) => theme.colors.gray[200]};
     opacity: 1;
+    cursor: not-allowed;
   }
 `;

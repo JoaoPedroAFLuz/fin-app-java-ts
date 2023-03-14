@@ -1,5 +1,6 @@
 package br.senai.sc.services;
 
+import br.senai.sc.exceptions.InsufficientBalanceException;
 import br.senai.sc.models.Transaction;
 import br.senai.sc.repositories.TransactionRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,20 @@ public class TransactionService {
         return transactionRepository.findByAccountId(accountId);
     }
 
+    public Transaction register(Transaction transaction) {
+        if (transaction.getValue().add(transaction.getAccount().getBalance()).doubleValue() < 0) {
+            throw new InsufficientBalanceException("Saldo insuficiente");
+        }
+        return save(transaction);
+    }
+
+    public boolean existsByAccount(Long accountId) {
+        return transactionRepository.existsByAccountId(accountId);
+    }
+
     public Transaction save(Transaction transaction) {
         return transactionRepository.save(transaction);
     }
+
 
 }

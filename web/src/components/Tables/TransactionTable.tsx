@@ -10,6 +10,10 @@ import { formatCurrency } from '../../utils/formatCurrency';
 
 import { StyledTableCell, StyledTableRow } from './styles';
 
+const rowStyle = {
+  color: 'red',
+};
+
 interface TransactionTableProps {
   transactions: TransactionDTO[];
 }
@@ -31,7 +35,9 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
               <StyledTableCell component="th" scope="row">
                 {moment(transaction.dateTime).format('DD/MM/YYYY HH:mm:ss')}
               </StyledTableCell>
-              <StyledTableCell>
+              <StyledTableCell
+                style={transaction.value < 0 ? rowStyle : undefined}
+              >
                 {formatCurrency(transaction.value)}
               </StyledTableCell>
             </StyledTableRow>

@@ -20,7 +20,7 @@ public class TransactionController {
     private final TransactionService transactionService;
     private final TransactionConverter converter;
 
-    @GetMapping("by-account")
+    @GetMapping("/by-account")
     public List<TransactionDTO> findByAccount(@RequestParam("accountId") Long accountId) {
         final List<Transaction> transactions = transactionService.findByAccountId(accountId);
 
@@ -30,7 +30,7 @@ public class TransactionController {
     @PostMapping()
     public TransactionDTO register(@RequestBody @Valid NewTransactionDTO newTransactionDTO) {
         final Transaction transaction = converter.dtoToEntity(newTransactionDTO);
-        final Transaction transactionPersisted = transactionService.save(transaction);
+        final Transaction transactionPersisted = transactionService.register(transaction);
 
         return converter.entityToDTO(transactionPersisted);
     }

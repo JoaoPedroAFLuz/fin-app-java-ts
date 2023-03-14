@@ -85,13 +85,13 @@ qualquer outro serviço que esteja utilizando a porta 5432. Para verificar se o 
 
 # Detalhamento as funcionalidades implementadas
 
-** Por motivos de erros ao tentar utilizar a versão 17 LTS do Java acabei tento que desenvolver na versão 11 LTS (que terá suporte pelo menos até 2026) **
+** Por motivos de erros ao tentar utilizar a versão 17 LTS do Java acabei tento que desenvolver na versão 11 LTS, que terá suporte pelo menos até 2026 **
 
 ## Models:
 
 ### User (Pessoa):
 
-Foi implementada a entidade user (Pessoa) com as seguintes propriedadas: Long id (chave primária e gerado automaticamente), String name (não podendo ser vazio), String email (não podendo ser vazio, necessita seguir padrão de um email e deve ser único), String address (não podendo ser vazio), String cpf (não podendo ser vazio e deve ser únido) .
+Foi implementada a entidade user (Pessoa) com as seguintes propriedades: Long id (chave primária e gerado automaticamente), String name (não podendo ser vazio), String email (não podendo ser vazio, necessita seguir padrão de um email e deve ser único), String address (não podendo ser vazio), String cpf (não podendo ser vazio e deve ser único) .
 
 ### Account (Conta):
 
@@ -99,7 +99,7 @@ Foi implementada a entidade account (Conta) com as seguintes propriedades: Long 
 
 ### Transaction (Movimentação):
 
-Foi implementada a entidade transaction (Movimentação) com as seguintes propriedades: Long id (chave primária e gerado automaticamente), Account account (conta relacionada à movimentação, podendo ter várias movimentações na mesma conta, não podendo ser nula), BigDecimal value (valor referente à movimentação, não podendo ser nulo) e LocalDateTime dateTime (data e hora da movimentação criada autmaticamente pelo metódo PrePersist).
+Foi implementada a entidade transaction (Movimentação) com as seguintes propriedades: Long id (chave primária e gerado automaticamente), Account account (conta relacionada à movimentação, podendo ter várias movimentações na mesma conta, não podendo ser nula), BigDecimal value (valor referente à movimentação, não podendo ser nulo) e LocalDateTime dateTime (data e hora da movimentação criada automaticamente pelo método PrePersist).
 
 ## DTOs: 
 
@@ -121,7 +121,7 @@ Foi implementado um DTO (Data Transfer Object) para recebimentos de dados para c
 
 ### NewAccount:
 
-Foi implementado um DTO (Data Transfer Object) para recebimentos de dados para criação de um nova account (Conta) com as seguintes propriedades: Long userId e Integer registrationCode. Nenhuma das suas propriedados podem ser nulas.
+Foi implementado um DTO (Data Transfer Object) para recebimentos de dados para criação de um nova account (Conta) com as seguintes propriedades: Long userId e Integer registrationCode. Nenhuma das suas propriedades podem ser nulas.
 
 ### New Transaction:
 
@@ -131,43 +131,43 @@ Foi implementado um DTO (Data Transfer Object) para recebimentos de dados para c
 
 ### User: 
 
-Foi implementado um componente para auxiliar na tradução de objetos DTO para Entidade e de Entidade para DTO relacionadas ao user. Há dois metodos, um responsável por receber um NewUserDTO e retornar um User e outro responsável por receber um User e retornar um UserDTO.
+Foi implementado um componente para auxiliar na tradução de objetos DTO para Entidade e de Entidade para DTO relacionadas ao user. Há dois métodos, um responsável por receber um NewUserDTO e retornar um User e outro responsável por receber um User e retornar um UserDTO.
 
 ### Account: 
 
-Foi implementado um componente para auxiliar na tradução de objetos DTO para Entidade e de Entidade para DTO relacionadas à account. Há dois metodos, um responsável por receber um NewAccountDTO e retornar um Account e outro responsável por receber um Account e retornar um AccountDTO.
+Foi implementado um componente para auxiliar na tradução de objetos DTO para Entidade e de Entidade para DTO relacionadas à account. Há dois métodos, um responsável por receber um NewAccountDTO e retornar um Account e outro responsável por receber um Account e retornar um AccountDTO.
 
 ### Transaction: 
 
-Foi implementado um componente para auxiliar na tradução de objetos DTO para Entidade e de Entidade para DTO relacionadas à transaction. Há dois metodos, um responsável por receber um NewTransactionDTO e retornar um Transaction e outro responsável por receber um Transaction e retornar um TransactionDTO.
+Foi implementado um componente para auxiliar na tradução de objetos DTO para Entidade e de Entidade para DTO relacionadas à transaction. Há dois métodos, um responsável por receber um NewTransactionDTO e retornar um Transaction e outro responsável por receber um Transaction e retornar um TransactionDTO.
 
 ## Repositories:
 
 ### User:
 
-Foi implementado um repository relacionado ao user que estende o JpaRepository e possui apenas um metódo que retorna o usuário com base no email.
+Foi implementado um repository relacionado ao user que estende o JpaRepository e possui apenas um método que retorna o usuário com base no email.
 
 ### Account:
 
-Foi implementado um repository relacionado à account que estende o JpaRepository e possui apenas um metódo que retorna uma lista de AccountDTO com base no id do user.
+Foi implementado um repository relacionado à account que estende o JpaRepository e possui apenas um método que retorna uma lista de AccountDTO com base no id do user.
 
 ### Transaction:
 
-Foi implementado um repository relacionado à trasaction que estende o JpaRepository e possui apenas um metódo que retorna uma lista de Transaction com base no id da account.
+Foi implementado um repository relacionado à transaction que estende o JpaRepository e possui apenas um método que retorna uma lista de Transaction com base no id da account.
 
 ## Services:
 
 ### User:
 
-Foi implementado um service relacionado ao user que possui metódos para buscar todos, buscar pelo  id, buscar pelo email, salvar e deletar pelo id.
+Foi implementado um service relacionado ao user que possui métodos para buscar todos, buscar pelo  id, buscar pelo email, salvar e deletar pelo id.
 
 ### Account:
 
-Foi implementado um service relacionado à account que possui metódos para buscar todos, buscar pelo id, buscar pelo id do user, salvar e deletar pelo id.
+Foi implementado um service relacionado à account que possui métodos para buscar todos, buscar pelo id, buscar pelo id do user, salvar e deletar pelo id.
 
 ### Transaction:
 
-Foi implementado um service relacionado à transaction que possui metódos para buscar pelo id da conta, e salvar.
+Foi implementado um service relacionado à transaction que possui métodos para buscar pelo id da conta, e salvar.
 
 ## Controllers:
 
@@ -201,7 +201,7 @@ Foi implementado um rest controller advice para manipular as exceções emitidas
 
 ### CorsConfiguration:
 
-Foi implementada a configuração de CORS para permitir requisições web de todas origens com os metódos GET, POST, PUT e DELETE e com todos os headers
+Foi implementada a configuração de CORS para permitir requisições web de todas origens com os métodos GET, POST, PUT e DELETE e com todos os headers
 
 ## Components:
 
@@ -217,7 +217,7 @@ Foram implementadas três telas referentes ao User (Pessoa), Account (Conta) e T
 
 ## Assets:
 
-Foram implementados styles com default theme e globalStyels, além de imagens relacionadas ao FIESC para a aplicação no geral.
+Foram implementados styles com default theme e globalStyles, além de imagens relacionadas ao FIESC para a aplicação no geral.
 
 ## Bibliotecas externas utilizadas:
 

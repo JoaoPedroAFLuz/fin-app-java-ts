@@ -6,3 +6,17 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+
+  img {
+    cursor: pointer;
+
+    transform: rotate(-90deg);
+  }
+`;
