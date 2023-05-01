@@ -11,8 +11,8 @@ Nesta aplicação foram desenvolvidas 03 funcionalidades gerais.Sendo a primeira
 
 ## Execução:
 
-- Inicie a api na IDE desejada
-- Execute o comando ```npm run dev``` dentro da pasta web no terminal
+- Inicie a api na IDE desejada;
+- Execute o comando ```npm run dev``` dentro da pasta web no terminal;
 
 # Detalhamento as funcionalidades implementadas
 
